@@ -31,8 +31,10 @@ function stopMusic () {
 function playNext() {
   song += 1;
   if (song == songs.length) { song = 0 };
-  player.src = 'mp3/' + songs[song] + '.mp3'; // наверное, правильнее потрошить сорс, чтобы вывести тайтл, а не наоборот, но "пути" к песням всё равно не настоящие =\
-  player.play();
+  player.src = 'mp3/' + songs[song] + '.mp3';
+  if (playerContainer.classList.contains('play')) {
+    player.play();  
+  }
   title.title = songs[song];
 }
 
@@ -40,7 +42,9 @@ function playBack() {
   song -= 1;
   if (song == -1) { song = songs.length - 1 };
   player.src = 'mp3/' + songs[song] + '.mp3';
-  player.play();
+  if (playerContainer.classList.contains('play')) {
+    player.play();  
+  }
   title.title = songs[song];
 }
 

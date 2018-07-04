@@ -2,6 +2,7 @@ const keys = document.getElementsByClassName('drum-kit__drum');
 
 function hitDaButton () {
   let thisPlayer = this.getElementsByTagName('audio');
+  thisPlayer[0].currentTime = 0;
   thisPlayer[0].play();
 }
 
