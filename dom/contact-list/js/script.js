@@ -1,4 +1,4 @@
-'use script';
+'use strict';
 
 // затереть старое
 const contactsList = document.getElementsByClassName('contacts-list')[0];
