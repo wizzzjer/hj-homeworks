@@ -3,8 +3,7 @@
 const controls = Array.from(document.querySelectorAll('.slider-nav a'));
 const slides = Array.from(document.getElementsByClassName('slide'));
 
-document.addEventListener('DOMContentLoaded', () => slides[0].classList.add('slide-current'));
-document.addEventListener('DOMContentLoaded', shouldIDisable);
+document.addEventListener('DOMContentLoaded', () => { slides[0].classList.add('slide-current'); shouldIDisable(); });
 
 function slider(event) {
   event.preventDefault();
@@ -32,19 +31,21 @@ function slider(event) {
   }
 }
 
+function disableControl(name) {
+  controls.find(control => control.dataset.action == name).classList.add('disabled');
+}
+
 function shouldIDisable() {
   controls.forEach(item => item.classList.remove('disabled'));
   
   if (slides[0].classList.contains('slide-current')) {
-    controls.find(control => control.dataset.action == 'prev').classList.add('disabled');
-    controls.find(control => control.dataset.action == 'first').classList.add('disabled');
+    disableControl('prev');
+    disableControl('first');
   }
   if (slides[slides.length - 1].classList.contains('slide-current')) {
-    controls.find(control => control.dataset.action == 'next').classList.add('disabled');
-    controls.find(control => control.dataset.action == 'last').classList.add('disabled');
+    disableControl('next');
+    disableControl('last');
   }
-  // насколько такая конструкция c Array.find "дорогая"? наверное, "дешевле" было бы контролы по индексу находить?
-  // но полагаться на неизменность индексов тоже как-то нехорошо. как оптимально будет поступить?
 }
 
 controls.forEach(item => {
