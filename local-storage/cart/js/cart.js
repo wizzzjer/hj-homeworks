@@ -260,7 +260,7 @@ function deleteGood() {
   deletingGood.send(JSON.stringify(deleteData));
   deletingGood.addEventListener('load', (e) => {
     try {
-      let response = JSON.parse(deleteData.response);
+      let response = JSON.parse(deletingGood.response);
       if (response.error !== true) {
         getCart.send();
       } else {
